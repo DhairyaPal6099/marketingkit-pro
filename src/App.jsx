@@ -2,12 +2,14 @@ import { useState } from "react";
 import logo from "./assets/marketingkit_pro.jpg";
 
 function App() {
+  const [sidebarOption, setSidebarOption] = useState('Dashboard');
+
   return (
     <div className="w-full h-screen flex flex-col">
       <Header />
       <div className="flex flex-1">
-        <Sidebar />
-        <MainContent />
+        <Sidebar setSidebarOption={setSidebarOption} />
+        <MainContent sidebarOption={sidebarOption} />
       </div>
     </div>
   );
@@ -62,24 +64,107 @@ function Header() {
   );
 }
 
-function Sidebar() {
+function Sidebar({ setSidebarOption }) {
   return (
     <aside className="w-64 p-4">
       <nav className="space-y-2">
-        <a href="#" className="block px-2 py-1 rounded hover:bg-gray-200">Dashboard</a>
-        <a href="#" className="block px-2 py-1 rounded hover:bg-gray-200">Content Calendar</a>
-        <a href="#" className="block px-2 py-1 rounded hover:bg-gray-200">Poster & Graphic Generator</a>
-        <a href="#" className="block px-2 py-1 rounded hover:bg-gray-200">Video Generator</a>
-        <a href="#" className="block px-2 py-1 rounded hover:bg-gray-200">Brand Media</a>
+        <button 
+          onClick={() => setSidebarOption('Dashboard')} 
+          className="block w-full text-left px-2 py-1 rounded hover:bg-gray-200"
+        >
+          Dashboard
+        </button>
+        <button 
+          onClick={() => setSidebarOption('Content Calendar')} 
+          className="block w-full text-left px-2 py-1 rounded hover:bg-gray-200"
+        >
+          Content Calendar
+        </button>
+        <button 
+          onClick={() => setSidebarOption('Poster & Graphic Generator')} 
+          className="block w-full text-left px-2 py-1 rounded hover:bg-gray-200"
+        >
+          Poster & Graphic Generator
+        </button>
+        <button 
+          onClick={() => setSidebarOption('Video Generator')} 
+          className="block w-full text-left px-2 py-1 rounded hover:bg-gray-200"
+        >
+          Video Generator
+        </button>
+        <button 
+          onClick={() => setSidebarOption('Brand Media')} 
+          className="block w-full text-left px-2 py-1 rounded hover:bg-gray-200"
+        >
+          Brand Media
+        </button>
       </nav>
     </aside>
   );
 }
 
-function MainContent() {
+function MainContent({ sidebarOption }) {
+  if (sidebarOption == 'Dashboard') {
+    return <Dashboard />;
+  } else if (sidebarOption == 'Content Calendar') {
+    return <ContentCalendar />;
+  } else if (sidebarOption == 'Poster & Graphic Generator') {
+    return <PosterAndGraphicGenerator />;
+  } else if (sidebarOption == 'Video Generator') {
+    return <VideoGenerator />;
+  } else if (sidebarOption == 'Brand Media') {
+    return <BrandMedia />;
+  }
+}
+
+function Dashboard() {
   return (
     <main className="flex-1 p-6">
       <h2 className="text-2xl font-semibold">Welcome to your Dashboard</h2>
+      <p className="text-gray-600 mt-2">
+        Select an option from the sidebar to get started. Select an option from the sidebar to get started. Select an option from the sidebar to get started. Select an option from the sidebar to get started. Select an option from the sidebar to get started.
+      </p>
+    </main>
+  );
+}
+
+function ContentCalendar() {
+  return (
+    <main className="flex-1 p-6">
+      <h2 className="text-2xl font-semibold">Welcome to your Content Calendar</h2>
+      <p className="text-gray-600 mt-2">
+        Select an option from the sidebar to get started. Select an option from the sidebar to get started. Select an option from the sidebar to get started. Select an option from the sidebar to get started. Select an option from the sidebar to get started.
+      </p>
+    </main>
+  );
+}
+
+function PosterAndGraphicGenerator() {
+  return (
+    <main className="flex-1 p-6">
+      <h2 className="text-2xl font-semibold">Welcome to your Poster & Graphic Generator</h2>
+      <p className="text-gray-600 mt-2">
+        Select an option from the sidebar to get started. Select an option from the sidebar to get started. Select an option from the sidebar to get started. Select an option from the sidebar to get started. Select an option from the sidebar to get started.
+      </p>
+    </main>
+  );
+}
+
+function VideoGenerator() {
+  return (
+    <main className="flex-1 p-6">
+      <h2 className="text-2xl font-semibold">Welcome to your VideoGenerator</h2>
+      <p className="text-gray-600 mt-2">
+        Select an option from the sidebar to get started. Select an option from the sidebar to get started. Select an option from the sidebar to get started. Select an option from the sidebar to get started. Select an option from the sidebar to get started.
+      </p>
+    </main>
+  );
+}
+
+function BrandMedia() {
+  return (
+    <main className="flex-1 p-6">
+      <h2 className="text-2xl font-semibold">Welcome to your Brand Media</h2>
       <p className="text-gray-600 mt-2">
         Select an option from the sidebar to get started. Select an option from the sidebar to get started. Select an option from the sidebar to get started. Select an option from the sidebar to get started. Select an option from the sidebar to get started.
       </p>
