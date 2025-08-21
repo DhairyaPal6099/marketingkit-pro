@@ -6,7 +6,7 @@ function App() {
 
   return (
     <div className="w-full h-screen flex flex-col">
-      <Header />
+      <Header sidebarOption={sidebarOption}/>
       <div className="flex flex-1">
         <Sidebar setSidebarOption={setSidebarOption} />
         <MainContent sidebarOption={sidebarOption} />
@@ -15,7 +15,7 @@ function App() {
   );
 }
 
-function Header() {
+function Header({ sidebarOption }) {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = () => {
@@ -33,7 +33,7 @@ function Header() {
         </div>
       </div>
 
-      <h1 className="text-white text-xl font-bold pl-15">Dashboard</h1>
+      <h1 className="text-white text-xl font-bold pl-15">{sidebarOption}</h1>
 
       {/* Search bar + button */}
       <div className="flex items-center space-x-2 flex-1 max-w-md ml-8">
