@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { use, useState } from "react";
 
 function PosterAndGraphicGenerator() {
   const [brandLogo, setBrandLogo] = useState(null);
+  const [photo, setPhoto] = useState(null);
   const [brandColors, setBrandColors] = useState("#000000");
   const [brandFont, setBrandFont] = useState("Arial");
   const [editorContent, setEditorContent] = useState([]);
@@ -10,6 +11,16 @@ function PosterAndGraphicGenerator() {
   // Handle logo upload
   const handleLogoUpload = (e) => {
     setBrandLogo(URL.createObjectURL(e.target.files[0]));
+  };
+
+  //Handle photo upload
+  const handlePhotoUpload = (e) => {
+    setPhoto(URL.createObjectURL(e.target.files[0]));
+  };
+
+  //Placeholder for AI editing function
+  const handleStartAiEdit = () => {
+    alert("AI editing feature coming soon!");
   };
 
   return (
@@ -36,6 +47,34 @@ function PosterAndGraphicGenerator() {
             </select>
           </label>
         </div>
+      </section>
+
+      {/* AI Editing Section */}
+      <section className="mb-6">
+        <h3 className="font-bold mb-2">AI Photo Editing</h3>
+        <div className="flex gap-4 items-center">
+          <label>
+            <span>Upload Photo:</span>
+            <input
+              className="ml-2"
+              type="file"
+              accept="image/*"
+              onChange={handlePhotoUpload}
+            />
+          </label>
+          <button
+            className="px-4 py-2 bg-green-500 text-white rounded ml-4"
+            onClick={handleStartAiEdit}
+            disabled={!photo}
+          >
+            Start AI Editing
+          </button>
+        </div>
+        {photo && (
+          <div className="mt-4">
+            <img src={photo} alt="Uploaded" className="h-32 rounded shadow" />
+          </div>
+        )}
       </section>
 
       {/* Drag-and-drop Editor (simplified) */}
