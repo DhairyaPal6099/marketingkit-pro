@@ -3,7 +3,6 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import MainContent from "./components/MainContent";
 
-
 function App() {
   const [sidebarOption, setSidebarOption] = useState('Dashboard');
 
