@@ -1,20 +1,11 @@
 import { useState } from "react";
 
 function PosterAndGraphicGenerator() {
-  const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [brandLogo, setBrandLogo] = useState(null);
   const [brandColors, setBrandColors] = useState("#000000");
   const [brandFont, setBrandFont] = useState("Arial");
   const [editorContent, setEditorContent] = useState([]);
   const [downloadFormat, setDownloadFormat] = useState("Instagram");
-
-  // Placeholder template data
-  const templates = [
-    { id: 1, name: "Promo", industry: "Retail" },
-    { id: 2, name: "Sale", industry: "Fashion" },
-    { id: 3, name: "Testimonial", industry: "Services" },
-    { id: 4, name: "Announcement", industry: "General" },
-  ];
 
   // Handle logo upload
   const handleLogoUpload = (e) => {
@@ -23,24 +14,6 @@ function PosterAndGraphicGenerator() {
 
   return (
     <main className="flex-1 p-6">
-      <h2 className="text-2xl font-semibold mb-4">Poster & Graphic Generator</h2>
-
-      {/* Templates */}
-      <section className="mb-6">
-        <h3 className="font-bold mb-2">Choose a Template</h3>
-        <div className="flex gap-4">
-          {templates.map((tpl) => (
-            <button
-              key={tpl.id}
-              className={`border px-4 py-2 rounded ${selectedTemplate === tpl.id ? "bg-blue-200" : ""}`}
-              onClick={() => setSelectedTemplate(tpl.id)}
-            >
-              {tpl.name} ({tpl.industry})
-            </button>
-          ))}
-        </div>
-      </section>
-
       {/* Branding */}
       <section className="mb-6">
         <h3 className="font-bold mb-2">Custom Branding</h3>
