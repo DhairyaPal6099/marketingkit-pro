@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useState } from "react";
 
 function PosterAndGraphicGenerator() {
   const [brandLogo, setBrandLogo] = useState(null);
@@ -7,20 +7,48 @@ function PosterAndGraphicGenerator() {
   const [brandFont, setBrandFont] = useState("Arial");
   const [editorContent, setEditorContent] = useState([]);
   const [downloadFormat, setDownloadFormat] = useState("Instagram");
+  const [isEditing, setIsEditing] = useState(false);
+  const [aiEditedPhoto, setAiEditedPhoto] = useState(null);
 
   // Handle logo upload
   const handleLogoUpload = (e) => {
     setBrandLogo(URL.createObjectURL(e.target.files[0]));
   };
 
-  //Handle photo upload
+  // Handle photo upload
   const handlePhotoUpload = (e) => {
-    setPhoto(URL.createObjectURL(e.target.files[0]));
+    setPhoto(e.target.files[0]);
   };
 
-  //Placeholder for AI editing function
-  const handleStartAiEdit = () => {
-    alert("AI editing feature coming soon!");
+  // Use backend server for AI editing
+  const handleStartAiEdit = async () => {
+    if (!photo) return;
+    setIsEditing(true);
+
+    // Convert image to base64
+    const reader = new FileReader();
+    reader.onloadend = async () => {
+      const base64data = reader.result.split(',')[1];
+
+      // Call your backend proxy
+      const apiResponse = await fetch("http://localhost:5000/api/replicate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          version: "YOUR_MODEL_VERSION", // Replace with your actual model version
+          input: {
+            image: `data:image/png;base64,${base64data}`
+          }
+        })
+      });
+      const result = await apiResponse.json();
+      // You may need to poll for the result depending on your backend implementation
+      setAiEditedPhoto(result.output ? result.output[0] : null);
+      setIsEditing(false);
+    };
+    reader.readAsDataURL(photo);
   };
 
   return (
@@ -65,14 +93,20 @@ function PosterAndGraphicGenerator() {
           <button
             className="px-4 py-2 bg-green-500 text-white rounded ml-4"
             onClick={handleStartAiEdit}
-            disabled={!photo}
+            disabled={!photo || isEditing}
           >
-            Start AI Editing
+            {isEditing ? "Editing..." : "Start AI Editing"}
           </button>
         </div>
         {photo && (
           <div className="mt-4">
-            <img src={photo} alt="Uploaded" className="h-32 rounded shadow" />
+            <img src={URL.createObjectURL(photo)} alt="Uploaded" className="h-32 rounded shadow" />
+          </div>
+        )}
+        {aiEditedPhoto && (
+          <div className="mt-4">
+            <h4 className="font-bold mb-2">AI Edited Photo:</h4>
+            <img src={aiEditedPhoto} alt="AI Edited" className="h-32 rounded shadow" />
           </div>
         )}
       </section>
@@ -88,7 +122,6 @@ function PosterAndGraphicGenerator() {
             className="border mb-2 p-2 w-full"
             onBlur={e => setEditorContent([...editorContent, { type: "text", value: e.target.value }])}
           />
-          {/* You can add more drag-and-drop features here */}
           {editorContent.map((item, idx) => (
             <div key={idx}>{item.value}</div>
           ))}
