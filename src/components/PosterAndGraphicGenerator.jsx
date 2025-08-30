@@ -10,6 +10,9 @@ function PosterAndGraphicGenerator() {
   const [isEditing, setIsEditing] = useState(false);
   const [aiEditedPhoto, setAiEditedPhoto] = useState(null);
 
+  //Test useState
+  const [reply, setReply] = useState("");
+
   // Handle logo upload
   const handleLogoUpload = (e) => {
     setBrandLogo(URL.createObjectURL(e.target.files[0]));
@@ -22,33 +25,21 @@ function PosterAndGraphicGenerator() {
 
   // Use backend server for AI editing
   const handleStartAiEdit = async () => {
-    if (!photo) return;
-    setIsEditing(true);
-
-    // Convert image to base64
-    const reader = new FileReader();
-    reader.onloadend = async () => {
-      const base64data = reader.result.split(',')[1];
-
-      // Call your backend proxy
-      const apiResponse = await fetch("http://localhost:5000/api/replicate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          version: "YOUR_MODEL_VERSION", // Replace with your actual model version
-          input: {
-            image: `data:image/png;base64,${base64data}`
-          }
-        })
+    try {
+      const response = await fetch('https://dhairyapal6099-marketingkit-pro-backend.hf.space/api/message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: "Hello server!" }),
       });
-      const result = await apiResponse.json();
-      // You may need to poll for the result depending on your backend implementation
-      setAiEditedPhoto(result.output ? result.output[0] : null);
-      setIsEditing(false);
-    };
-    reader.readAsDataURL(photo);
+
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+      }
+      const data = await response.json();
+      setReply(data.reply);
+    } catch (error) {
+      console.error("Error communicating with backend:", error);
+    }
   };
 
   return (
@@ -93,10 +84,11 @@ function PosterAndGraphicGenerator() {
           <button
             className="px-4 py-2 bg-green-500 text-white rounded ml-4"
             onClick={handleStartAiEdit}
-            disabled={!photo || isEditing}
+            //disabled={!photo || isEditing}
           >
             {isEditing ? "Editing..." : "Start AI Editing"}
           </button>
+          <p>Server reply: {reply}</p>
         </div>
         {photo && (
           <div className="mt-4">
