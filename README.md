@@ -1,7 +1,7 @@
 # MarketingKit Pro
 
 An AI-powered content creation and scheduling platform.  
-The project consists of a **React frontend** and a **Flask backend**, with plans to integrate **MongoDB** for storage.  
+The project consists of a **React frontend** and an **Node.js/Express** backend proxy that interacts with a **Flask backend**, with plans to integrate **MongoDB** for storage.  
 Users can upload photos, get AI-powered edits, and soon schedule/post content to social platforms.
 
 ---
@@ -14,6 +14,7 @@ Users can upload photos, get AI-powered edits, and soon schedule/post content to
 - **Fetch API** for communicating with backend
 
 ### Backend
+- **Node.js/Exress** (JavaScript web framework)
 - **Flask** (Python web framework)
 - **Hugging Face Inference API** (AI image editing models)
 - **Flask-CORS** for handling cross-origin requests
