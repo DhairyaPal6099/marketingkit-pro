@@ -10,9 +10,6 @@ function PosterAndGraphicGenerator() {
   const [isEditing, setIsEditing] = useState(false);
   const [aiEditedPhoto, setAiEditedPhoto] = useState(null);
 
-  //Test useState
-  const [reply, setReply] = useState("");
-
   // Handle logo upload
   const handleLogoUpload = (e) => {
     setBrandLogo(URL.createObjectURL(e.target.files[0]));
@@ -26,19 +23,35 @@ function PosterAndGraphicGenerator() {
   // Use backend server for AI editing
   const handleStartAiEdit = async () => {
     try {
-      const response = await fetch('https://dhairyapal6099-marketingkit-pro-backend.hf.space/api/message', {
+      if (!photo) return;
+      setIsEditing(true);
+
+      const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+
+      const base64String = await toBase64(photo);
+
+      const response = await fetch('https://dhairyapal6099-marketingkit-pro-backend.hf.space/api/inference', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: "Hello server!" }),
+        body: JSON.stringify({ image: base64String }),
       });
 
       if (!response.ok) {
         throw new Error(`Server error: ${response.status}`);
       }
+
       const data = await response.json();
-      setReply(data.reply);
+      const imgSrc = `data:image/png;base64,${data.result}`;
+      setAiEditedPhoto(imgSrc);
     } catch (error) {
       console.error("Error communicating with backend:", error);
+    } finally {
+      setIsEditing(false);
     }
   };
 
@@ -84,11 +97,10 @@ function PosterAndGraphicGenerator() {
           <button
             className="px-4 py-2 bg-green-500 text-white rounded ml-4"
             onClick={handleStartAiEdit}
-            //disabled={!photo || isEditing}
+            disabled={!photo || isEditing}
           >
             {isEditing ? "Editing..." : "Start AI Editing"}
           </button>
-          <p>Server reply: {reply}</p>
         </div>
         {photo && (
           <div className="mt-4">

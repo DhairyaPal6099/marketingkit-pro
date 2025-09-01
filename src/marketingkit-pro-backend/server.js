@@ -1,5 +1,5 @@
 import express from 'express';
-//import fetch from 'node-fetch';
+import fetch from 'node-fetch';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
@@ -10,13 +10,20 @@ app.use(express.json({ limit: '10mb' }));
 app.use(cors());
 
 const PORT = process.env.PORT || 7860;
-//const HF_API_URL = "https://api-inference.huggingface.co/models/username/model-name";
 
-app.post('/api/message', async (req, res) => {
+//Route: Talk to Python worker
+app.post('/api/inference', async (req, res) => {
     try {
-        const { text } = req.body;
+        const { image } = req.body;
 
-        res.json({ reply: `Server received your message: ${text}` });
+        const response = await fetch("http://127.0.0.1:5000/predict", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ image })
+        });
+
+        const data = await response.json();
+        res.json({ result: data.result });
     } catch (error) {
         console.log("Error:", error);
         res.status(500).json({ error: error.message });
