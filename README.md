@@ -1,12 +1,24 @@
-# React + Vite
+# MarketingKit Pro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An AI-powered content creation and scheduling platform.  
+The project consists of a **React frontend** and a **Flask backend**, with plans to integrate **MongoDB** for storage.  
+Users can upload photos, get AI-powered edits, and soon schedule/post content to social platforms.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
 
-## Expanding the ESLint configuration
+### Frontend
+- **React** (with Vite for fast builds)
+- **Tailwind CSS** (for styling)
+- **Fetch API** for communicating with backend
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Backend
+- **Flask** (Python web framework)
+- **Hugging Face Inference API** (AI image editing models)
+- **Flask-CORS** for handling cross-origin requests
+
+### Planned
+- **MongoDB** for storing user data, photo history, and scheduling info.
+
+---
