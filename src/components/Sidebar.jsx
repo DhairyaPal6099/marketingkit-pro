@@ -3,18 +3,6 @@ function Sidebar({ setSidebarOption }) {
     <aside className="w-64 p-4">
       <nav className="space-y-2">
         <button 
-          onClick={() => setSidebarOption('Dashboard')} 
-          className="block w-full text-left px-2 py-1 rounded hover:bg-gray-200"
-        >
-          Dashboard
-        </button>
-        <button 
-          onClick={() => setSidebarOption('Content Calendar')} 
-          className="block w-full text-left px-2 py-1 rounded hover:bg-gray-200"
-        >
-          Content Calendar
-        </button>
-        <button 
           onClick={() => setSidebarOption('Poster & Graphic Generator')} 
           className="block w-full text-left px-2 py-1 rounded hover:bg-gray-200"
         >
@@ -25,6 +13,12 @@ function Sidebar({ setSidebarOption }) {
           className="block w-full text-left px-2 py-1 rounded hover:bg-gray-200"
         >
           Brand Media
+        </button>
+        <button 
+          onClick={() => setSidebarOption('Content Calendar')} 
+          className="block w-full text-left px-2 py-1 rounded hover:bg-gray-200"
+        >
+          Content Calendar
         </button>
       </nav>
     </aside>
