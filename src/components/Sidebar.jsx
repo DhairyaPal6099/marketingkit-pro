@@ -21,12 +21,6 @@ function Sidebar({ setSidebarOption }) {
           Poster & Graphic Generator
         </button>
         <button 
-          onClick={() => setSidebarOption('Video Generator')} 
-          className="block w-full text-left px-2 py-1 rounded hover:bg-gray-200"
-        >
-          Video Generator
-        </button>
-        <button 
           onClick={() => setSidebarOption('Brand Media')} 
           className="block w-full text-left px-2 py-1 rounded hover:bg-gray-200"
         >
