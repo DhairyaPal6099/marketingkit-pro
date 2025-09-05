@@ -103,7 +103,7 @@ function AIEditingSection({
         <label>
           <span>Upload Photo:</span>
           <input
-            className="ml-2"
+            className="ml-2 object-contain max-h-full max-w-full"
             type="file"
             accept="image/*"
             onChange={handleFileUpload}
@@ -122,7 +122,7 @@ function AIEditingSection({
           <img
             src={URL.createObjectURL(photo)}
             alt="Uploaded"
-            className="h-32 rounded shadow border rounded-lg w-[300px] h-[300px] flex items-center justify-center bg-gray-100"
+            className="border rounded-lg w-[300px] h-[300px] flex items-center justify-center bg-gray-100"
           />
         </div>
       )}
@@ -172,7 +172,7 @@ function ExportSection({
       <h3 className="text-xl font-bold mb-2">Export Options</h3>
       <div className="flex items-center gap-4">
         <select
-          className="border rounded p-2"
+          className="border rounded p-2 bg-black"
           value={downloadFormat}
           onChange={(e) => setDownloadFormat(e.target.value)}
         >

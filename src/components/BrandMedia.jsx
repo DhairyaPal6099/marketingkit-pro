@@ -103,7 +103,7 @@ function BrandMedia() {
             <select
               value={brandFont}
               onChange={(e) => setBrandFont(e.target.value)}
-              className="border rounded p-2"
+              className="border rounded p-2 bg-black"
             >
               <option value="Arial">Arial</option>
               <option value="Helvetica">Helvetica</option>
