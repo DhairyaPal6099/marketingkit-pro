@@ -97,7 +97,7 @@ function BrandMedia() {
           </div>
 
           {/* Font Selection */}
-          <div>
+          <div className="mt-15">
             <h3 className="text-xl font-bold mb-4">Typography</h3>
             <label className="block mb-2 font-medium">Brand Font</label>
             <select
@@ -146,7 +146,16 @@ function BrandMedia() {
           ) : (
             <p className="text-gray-500">No media uploaded yet.</p>
           )}
+
+          <div className="mt-10">
+            <h3 className="text-xl font-bold mb-4">Save Brand Media</h3>
+            <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 w-50">
+              Save
+            </button>
+          </div>
         </div>
+
+        
       </section>
     </main>
   );
