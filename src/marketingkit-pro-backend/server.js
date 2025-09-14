@@ -2,6 +2,8 @@ import express from 'express';
 import fetch from 'node-fetch';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { MongoClient } from 'mongodb';
+import { uri } from '../../atlas_uri.js'
 
 dotenv.config();
 
@@ -10,6 +12,31 @@ app.use(express.json({ limit: '10mb' }));
 app.use(cors());
 
 const PORT = process.env.PORT || 7860;
+
+const client = new MongoClient(uri);
+const dbname = "bank"
+
+const connectToDatabase = async() => {
+    try {
+        await client.connect();
+        console.log("Connected to MongoDB");
+
+    } catch (error) {
+        console.error("Error connecting to MongoDB:", error);
+    }
+};
+
+const main = async() => {
+    try {
+        await connectToDatabase();
+    } catch (error) {
+        console.error(`Error connecting to databsae: ${error}`);
+    } finally {
+        await client.close();
+    }
+}
+
+main();
 
 //Route: Talk to Python worker
 app.post('/api/inference', async (req, res) => {

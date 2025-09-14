@@ -10,7 +10,7 @@ function Header({ sidebarOption }) {
   };
 
   return (
-    <header className="bg-black shadow px-4 py-2 flex items-center justify-between">
+    <header className="bg-black shadow px-4 py-2 flex items-center justify-between w-full">
         {/* Logo + Title */}
         <div className="flex items-center space-x-4">
         <img src={logo} alt="Logo" className="w-12 h-12" />

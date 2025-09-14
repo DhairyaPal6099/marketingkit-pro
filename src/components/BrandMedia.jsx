@@ -23,9 +23,9 @@ function BrandMedia() {
   };
 
   return (
-    <main className="flex-1 p-6">
+    <main className="flex-1 p-6 w-full">
       {/* Page Intro */}
-      <section className="w-full">
+      <section>
         <h2 className="text-2xl font-semibold">Welcome to your Brand Media</h2>
         <p className="text-gray-600 mt-2">
           Manage your brand assets here: logo, colors, fonts, and uploaded
