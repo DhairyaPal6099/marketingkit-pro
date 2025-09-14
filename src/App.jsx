@@ -4,7 +4,7 @@ import Sidebar from "./components/Sidebar";
 import MainContent from "./components/MainContent";
 
 function App() {
-  const [sidebarOption, setSidebarOption] = useState('Poster & Graphic Generator');
+  const [sidebarOption, setSidebarOption] = useState('Content Calendar');
 
   return (
     <div className="w-full h-screen flex flex-col">
