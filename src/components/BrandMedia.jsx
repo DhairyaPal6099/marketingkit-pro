@@ -22,6 +22,12 @@ function BrandMedia() {
     }
   };
 
+  //Save brand media
+  const handleSaveBrandMedia = async () => {
+    // Implement save functionality here
+    alert("Brand media saved (not really, this is a placeholder).");
+  }
+
   return (
     <main className="flex-1 p-6 w-full">
       {/* Page Intro */}
@@ -149,7 +155,7 @@ function BrandMedia() {
 
           <div className="mt-10">
             <h3 className="text-xl font-bold mb-4">Save Brand Media</h3>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 w-50">
+            <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 w-50" onClick={ handleSaveBrandMedia }>
               Save
             </button>
           </div>

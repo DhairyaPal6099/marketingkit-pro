@@ -35,7 +35,7 @@ app.post('/api/inference', async (req, res) => {
     }
 });
 
-//Route: get User Profile
+//Route: User Profile get/save
 app.use('/users', usersRouter);
 
 
