@@ -38,5 +38,4 @@ app.post('/api/inference', async (req, res) => {
 //Route: User Profile get/save
 app.use('/users', usersRouter);
 
-
 app.listen(PORT, () => console.log('Server running on port ${PORT}'));

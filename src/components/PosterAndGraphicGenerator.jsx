@@ -189,12 +189,6 @@ function ExportSection({
         >
           Download Image
         </button>
-        <button className="px-4 py-2 bg-purple-500 text-white rounded">
-          Share to Instagram
-        </button>
-        <button className="px-4 py-2 bg-indigo-500 text-white rounded">
-          Share to Facebook
-        </button>
       </div>
     </section>
   );
