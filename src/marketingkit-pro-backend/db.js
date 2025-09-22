@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 import { uri } from '../../atlas_uri.js'
 
 const client = new MongoClient(uri);
@@ -16,7 +16,7 @@ export const connectToDatabase = async() => {
 
 export async function getUserProfile(userId) {
     try {
-        return await db.collection('users').findOne({ _id: userId });
+        return await db.collection('users').findOne({ _id: ObjectId.createFromHexString(userId) });
     } catch (error) {
         console.error("Error fetching user profile:", error);
         throw error;
@@ -26,8 +26,8 @@ export async function getUserProfile(userId) {
 export async function saveUserProfile(userId, profileData) {
     try {
         return await db.collection('users').updateOne(
-            { _id: userId },
-            { preferences: profileData },
+            { _id: ObjectId.createFromHexString(userId) },
+            { $set: { preferences: profileData } },
         );
     } catch (error) {
         console.error("Error saving user profile:", error);
