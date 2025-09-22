@@ -14,12 +14,6 @@ function Sidebar({ setSidebarOption }) {
         >
           Brand Media
         </button>
-        <button 
-          onClick={() => setSidebarOption('Content Calendar')} 
-          className="block w-full text-left px-2 py-1 rounded hover:bg-gray-200"
-        >
-          Content Calendar
-        </button>
       </nav>
     </aside>
   );

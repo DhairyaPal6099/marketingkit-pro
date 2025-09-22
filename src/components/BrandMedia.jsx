@@ -28,6 +28,23 @@ function BrandMedia() {
     alert("Brand media saved (not really, this is a placeholder).");
   }
 
+  const handleGetBrandMedia = async () => {
+    try {
+        const response = await fetch('http://localhost:7860/users/123/profile',
+          {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+          }
+        );
+        const data = await response.json();
+        console.log(data);
+        alert("Check console for response from backend");
+    } catch (error) {
+        console.error("Error calling backend route:", error);
+        alert("Error calling backend route. Check console for details.");
+    }
+  };
+
   return (
     <main className="flex-1 p-6 w-full">
       {/* Page Intro */}
