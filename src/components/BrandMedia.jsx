@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function BrandMedia() {
   const [brandLogo, setBrandLogo] = useState(null);
@@ -44,6 +44,10 @@ function BrandMedia() {
         alert("Error calling backend route. Check console for details.");
     }
   };
+
+  useEffect(() => {
+    handleGetBrandMedia();
+  }, []);
 
   return (
     <main className="flex-1 p-6 w-full">
