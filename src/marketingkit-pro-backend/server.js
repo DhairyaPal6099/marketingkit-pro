@@ -13,9 +13,6 @@ app.use(cors());
 
 const PORT = process.env.PORT || 7860;
 
-//Connecting to database
-await connectToDatabase();
-
 //Route: Talk to Python worker
 app.post('/api/inference', async (req, res) => {
     try {
@@ -38,4 +35,9 @@ app.post('/api/inference', async (req, res) => {
 //Route: User Profile get/save
 app.use('/users', usersRouter);
 
-app.listen(PORT, () => console.log('Server running on port ${PORT}'));
+const startServer = async () => {
+    await connectToDatabase();
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+};
+
+startServer();
