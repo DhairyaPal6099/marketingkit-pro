@@ -10,38 +10,38 @@ function Header({ sidebarOption }) {
   };
 
   return (
-    <header className="bg-black shadow px-4 py-2 flex items-center justify-between w-full">
+    <header className="bg-black shadow px-4 py-2 flex items-center justify-between w-screen">
         {/* Logo + Title */}
-        <div className="flex items-center space-x-4">
-        <img src={logo} alt="Logo" className="w-12 h-12" />
-        <div>
-            <h3 className="text-white text-lg font-semibold">MarketingKit Pro</h3>
-        </div>
+        <div className="items-center space-x-4 flex">
+          <img src={logo} alt="Logo" className="w-12 h-12" />
+          <div>
+              <h3 className="text-white text-lg font-semibold">MarketingKit Pro</h3>
+          </div>
         </div>
 
         <h1 className="text-white text-xl font-bold pl-15">{sidebarOption}</h1>
 
         {/* Search bar + button */}
-        <div className="flex items-center space-x-2 flex-1 max-w-md ml-8">
-        <div className="relative flex-1">
-            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-            🔍
-            </span>
-            <input
-            type="text"
-            placeholder="Search..."
-            className="pl-10 pr-3 py-1 w-full rounded text-white border-2 border-white bg-black"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            onKeyDown={(e) => { if (e.key === 'Enter') handleSearch(); }}
-            />
-        </div>
-        <button 
-            onClick={handleSearch} 
-            className="px-4 py-1 bg-green-500 text-white rounded hover:bg-green-600"
-        >
-            Search
-        </button>
+        <div className="items-center space-x-2 max-w-md ml-8 flex">
+          <div className="relative flex-1">
+              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+              🔍
+              </span>
+              <input
+              type="text"
+              placeholder="Search..."
+              className="pl-10 pr-3 py-1 w-full rounded text-white border-2 border-white bg-black"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyDown={(e) => { if (e.key === 'Enter') handleSearch(); }}
+              />
+          </div>
+          <button 
+              onClick={handleSearch} 
+              className="px-4 py-1 bg-green-500 text-white rounded hover:bg-green-600"
+          >
+              Search
+          </button>
         </div>
 
         {/* Profile */}

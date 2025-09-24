@@ -62,7 +62,7 @@ function PosterAndGraphicGenerator() {
   };
 
   return (
-    <main className="flex flex-col lg:flex-row p-6 gap-6">
+    <main className="flex flex-col lg:flex-row p-6 gap-6 w-full">
       <div className="flex-1 space-y-6">
         <AIEditingSection
           photo={photo}
@@ -97,7 +97,7 @@ function AIEditingSection({
   handleStartAiEdit,
 }) {
   return (
-    <section className="mb-6">
+    <section className="mb-6 w-full">
       <h3 className="font-bold mb-2">AI Photo Editing</h3>
       <div className="flex gap-4 items-center">
         <label>
@@ -142,7 +142,7 @@ function AIEditingSection({
 
 function UploadPreviewSection({ uploadedImage}) {
   return (
-    <section className="flex-1 p-6">
+    <section className="flex-1 p-6 w-full">
       <h3 className="font-bold mb-2">Edited photo</h3>
       <div className="flex gap-4 items-start">
         <div className="border rounded-lg w-[300px] h-[300px] flex items-center justify-center bg-gray-100">
@@ -169,7 +169,7 @@ function ExportSection({
 }) {
   return (
     <section>
-      <h3 className="text-xl font-bold mb-2">Export Options</h3>
+      <h3 className="text-xl font-bold mb-2 w-full">Export Options</h3>
       <div className="flex items-center gap-4">
         <select
           className="border rounded p-2 bg-black"

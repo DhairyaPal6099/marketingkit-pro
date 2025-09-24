@@ -9,9 +9,11 @@ function App() {
   return (
     <div className="w-full h-screen flex flex-col">
       <Header sidebarOption={sidebarOption}/>
-      <div className="flex flex-1">
+      <div className="flex flex-1 w-full">
         <Sidebar setSidebarOption={setSidebarOption} />
-        <MainContent sidebarOption={sidebarOption} />
+        <div className="flex-1 w-full">
+          <MainContent sidebarOption={sidebarOption} />
+        </div>
       </div>
     </div>
   );
